@@ -48,6 +48,6 @@ connection = pymysql.connect(host=args.host,
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = connection.cursor()
 cursor.execute(sql)
-cursor.execute("LOAD DATA INFILE '{}' INTO TABLE gdelt IGNORE 1 LINES FIELDS TERMINATED BY ';';".format(os.path.abspath(args.file)))
-
-print("done")
+sql = "truncate gdelt; LOAD DATA INFILE '{}' INTO TABLE gdelt FIELDS TERMINATED BY ';' IGNORE 1 LINES;".format(os.path.abspath(args.file))
+print("\n\n" + sql + "\n\n")
+print("RUN COMMAND ABOVE FROM MYSQL CLI!!!")
